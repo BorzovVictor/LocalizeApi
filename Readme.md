@@ -8,7 +8,7 @@ In `Startup` class you need to add two calls:
 
 ### How to use
 
-Inject `IStringLocalizer` where you need and use with text
+Inject `IStringLocalizer` where you need it and use it with text
 
     [ApiController]
     [Route("[controller]")]
