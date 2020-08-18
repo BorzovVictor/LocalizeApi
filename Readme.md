@@ -2,6 +2,7 @@
 
 ### To configure
 In `appsettings.json` we should to set db connection string with name 'LocalizationsDb' or rename it in the ServiceCollectionExtensions class
+
 In `Startup` class you need to add two calls:
  * `services.AddLocalizationService(Configuration); `in the `ConfigureServices` method
  * `app.AddLocalizationApp();` in the `Configure` method
