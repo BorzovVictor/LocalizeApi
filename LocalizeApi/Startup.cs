@@ -32,7 +32,7 @@ namespace LocalizeApi
         {
             services.AddControllers();
             
-            // add localisation
+            // add localization
             services.AddLocalizationService(Configuration);
         }
 
@@ -43,7 +43,7 @@ namespace LocalizeApi
             {
                 app.UseDeveloperExceptionPage();
             }
-            // add localisation
+            // add localization
             app.AddLocalizationApp();
             
             app.UseHttpsRedirection();
