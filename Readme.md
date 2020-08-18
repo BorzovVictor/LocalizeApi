@@ -15,7 +15,7 @@ And this object then will be used for localization.
 In the Postman call endpoint:
  * https://localhost:5001/weatherforecast
  * add to headers: [{"key":"Accept-Language","value":"en"}]
- ![alt text](./docs/Annotation.png)
+ ![alt text](https://github.com/BorzovVictor/LocalizeApi/blob/master/LocalizeApi/docs/Annotation.png)
  
 ### What to add
  * Work with cache (MemoryCache). We must get the data from the database and store it in memory. In the future, we should work with localized variables only from memory. We should rewrite follow methods to work with memory 
