@@ -6,6 +6,28 @@ In `Startup` class you need to add two calls:
  * `services.AddLocalizationService(Configuration); `in the `ConfigureServices` method
  * `app.AddLocalizationApp();` in the `Configure` method
 
+### How to use
+
+Inject `IStringLocalizer` where you need and use with text
+
+    [ApiController]
+    [Route("[controller]")]
+    public class WeatherForecastController : ControllerBase
+    {
+        private readonly IStringLocalizer _localize;
+
+        public WeatherForecastController(IStringLocalizer localize)
+        {
+            _localize = localize;
+        }
+        
+        [HttpGet]
+        public string Test()
+        {
+            return _localize["Message"];
+        }
+    }
+
 ### How it works
 Using indexers, we return from the database by the key the `Resource` object, from which we form an instance of the `LocalizedString` class.
 `CreateStringLocalizer` method determines the data context, initializes the database and returns the `EFStringLocalizer` object.
