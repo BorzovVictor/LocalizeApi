@@ -9,7 +9,7 @@ using Microsoft.Extensions.Localization;
 
 namespace LocalizeApi
 {
-    public static class ServiceCollectionExtensions
+    public static class LocalizeServiceExtensions
     {
         private static string _dbName = "LocalizationsDb";
         public static IServiceCollection AddLocalizationService(this IServiceCollection services, IConfiguration configuration)
@@ -28,6 +28,21 @@ namespace LocalizeApi
             return services;
         }
 
+        public static IServiceCollection AddLocalizationService(this IServiceCollection services, string connectionString)
+        {
+            services.AddDbContext<LocalizationContext>(options =>
+                options.UseSqlServer(connectionString));
+            
+            services.AddTransient<IStringLocalizer, EFStringLocalizer>();
+            services.AddSingleton<IStringLocalizerFactory>(new EFStringLocalizerFactory(connectionString));
+            services.AddControllersWithViews().AddDataAnnotationsLocalization(options =>
+            {
+                options.DataAnnotationLocalizerProvider = (type, factory) =>
+                    factory.Create(null);
+            });
+            return services;
+        }
+        
         public static IApplicationBuilder AddLocalizationApp(this IApplicationBuilder app)
         {
             var supportedCultures = new[]
